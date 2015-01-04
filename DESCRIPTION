@@ -1,0 +1,10 @@
+Package: RTutorTopIncomeTaxation
+Type: Package
+Title: Interactivly study the article ...
+Version: 0.1
+Date: 2015-01-04
+Author: Jonas Send
+Maintainer: Who to complain to <yourfault@somewhere.net>
+Description: More about what it does (maybe more than one line)
+License: GPL >= 2.0
+Depends: RTutor, ggplot2, regtools
