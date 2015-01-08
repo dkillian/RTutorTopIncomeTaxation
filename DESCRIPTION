@@ -6,5 +6,7 @@ Date: 2015-01-04
 Author: Jonas Send
 Maintainer: Who to complain to <yourfault@somewhere.net>
 Description: More about what it does (maybe more than one line)
-License: GPL >= 2.0
+License: Not yet licensed by the author. The default suggestion for licensing is
+  Problem set content: Creative Commons (CC BY)
+	Package code: GPL >= 2.0
 Depends: RTutor, ggplot2, regtools
