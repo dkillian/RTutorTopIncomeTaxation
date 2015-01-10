@@ -21,7 +21,7 @@ Author:  Jonas Send
 In their paper **"Optimal Taxation of Top Labor Incomes: A Tale of Three Elasticities"** Thomas Piketty, Emmanuel Saez and Stefanie Stantcheva (2014) analyse the response of top earners to taxes and derive optimal tax rate formulas from their findings. In this interactive offline *R* Tutorial, we are going to gradually reproduce their study and discuss it.  
 (The article and the corresponding public data is provided on the website of the *American Economic Association*. You can click on this [link](https://www.aeaweb.org/articles.php?doi=10.1257/pol.6.1.230) to download it.)
 
-### Introduction
+## Exercise Overview
 
 The main focus of the paper is to examine the channels through which top earners react to changes in top net-of-tax rates. Top net-of-tax rate is defined as $1 - r$, with $r$ being the top marginal tax rate on ordinary income. As often in economics, when we look at the response of people to external influences, we are going to talk about elasticities. In our case, we are going to look at three different elasticities:
 
@@ -173,7 +173,7 @@ We can see that income growth for the bottom 99 percent (purple) was highest bet
 By means of plotting our data, we could already draw first conservative conclusions about correlations between top net-of-tax rates and top 1 percent incomes. We also were able to get a first idea of the influence the three different elasticities have on the overall elasticity. But while it is nice to have plots of data to get a first impression, one should never draw final conclusions about causal relationships between different factors just by looking at graphs. That is why, in the next two exercises, we are going to do some quantitative and statistical analysis of our data. To move to *Exercise 1.2* you can click on the *Go to next exercise...*-button in the bottom left as a shortcut.
 
 ### Info: Correlation does not imply causation!
-Just because two factors are highly correlated, that doesn't mean that there is a causal relationship between them. They could both be influenced by an unknown externality. If you want to see some examples for high correlations that clearly don't indicate a causal relationship, take a look at [Spurious Correlations](http://tylervigen.com/), a site that illustrates this problem in a rather funny way.
+Just because two factors are highly correlated, that doesn't mean that there is a causal relationship between them. They could both be influenced by an unknown externality. If you want to see some examples for high correlations that clearly don't indicate a causal relationship, take a look at [Spurious Correlations](http://tylervigen.com/), a site that illustrates this problem in a rather entertaining way.
 
 *You can find the corresponding graphics and the associated discussions on pages 16f., 20 and 22 of the paper.*
 
@@ -411,7 +411,7 @@ showreg(list(US.reg3, US.reg4),
                                "capital gains included"))
 ```
 
-Again, we receive a significant positive elasticity with around $0.3$. Again, with no notable difference between the two income shares. Our results therefore are robust to including a time trend. Piketty et al. conclude that this means that there is presumably a strong link between top marginal tax rates and top 1 percent shares and that tax avoidance effects (expressed through $e_2$) tend to be small, just as we expected when looking at the summarizing plots from *Exercise 1.1*. 
+Again, we receive a significant positive elasticity with around $0.3$. Again, with no notable difference between the two income shares. Our results are therefore robust to including a time trend. Piketty et al. conclude that this means that there is presumably a strong link between top marginal tax rates and top 1 percent shares and that tax avoidance effects (expressed through $e_2$) tend to be small, just as we expected when looking at the summarizing plots from *Exercise 1.1*. 
 
 ### Info: Further insights
 * You might have already noticed that the elasticities we get from our regressions are lower than the ones we got from our simple estimations from *Exercise 1.2*. Piketty et al. explain this with the fact that before the 1970s the average marginal tax rate for the top 1 percent was smaller than the statutory tax top rate that we consider. That means that an increase or a decrease in top MTR didn't actually affect the whole top 1 percent which leads to an underestimation of the overall elasticity $e$.
@@ -519,7 +519,7 @@ Besides the problems that you can read about in the *info* section above, keep i
 
 ## Exercise 2.1 International evidence - Top income shares
 
-After we have taken a look at data just from the US in *Exercise 1*, we are next going to analyse international macroeconomic evidence in order to be able to substantiate our findings. We are going to deepen the *R* skills that we have acquired in *Exercise 1* and also consider some more fancy ways to study and visualize data.
+After we have taken a look at data just from the US in *Exercise 1*, we are next going to analyse international macroeconomic evidence in order to be able to substantiate our findings. We are going to deepen the *R* skills that we have acquired in *Exercise 1* and also consider some more sophisticated ways to study and visualize data.
 
 ### a) Using a Google motion chart
 
@@ -542,10 +542,10 @@ Int.data = read.dta("intdata.dta")
 
 This data set contains the three macroeconomic values marginal tax rates for top incomes as `mtr`, income shares of the top 1 percent `top1` and real GDP per capita `gdpcap` from 18 different OECD countries for the years 1960 to 2010. For some variables, the data is not complete over the whole time span for some countries. See the *Data Explorer* for more information.
 
-To get a first overview of how top marginal tax rates influenced top 1 percent income shares in the different countries we are going to use a motion plot that is provided by the package *googleVis* that allows you to create a lot of different Google plots. This package is a great tool set to illustrate your data which you should definitely check out. As a start, you can try to comprehend the code in the next example chunk.
+To get a first overview of how top marginal tax rates influenced top 1 percent income shares in the different countries we are going to use a motion plot that is provided by the package *googleVis* that allows you to create a lot of different Google plots. This package is a great tool set to illustrate your data which is definitely worth exploring. As a start, you can try to comprehend the code in the next example chunk.
 
 ### Info: googleVis
-The *googleVis* package offers the possibility to visualize *R* data frames with interactive Google Charts. The output of a *googleVis* function is html code which can be opened in a new window in your browser or embedded into existing html documents and websites. It is a great tool to dive into data and in many cases exceeds the possibilities of visualization of information that more common ways to plot provide by far.  
+The *googleVis* package offers the possibility to visualize *R* data frames with interactive Google Charts. The output of a *googleVis* function is html code which can be opened in a new window in your browser or embedded into existing html documents and websites. It is a great tool to dive into data and in many cases by far exceeds the possibilities of visualization of information that more common ways to plot provide.  
 We are going to use maybe the most popular kind of Google chart: The Motion Chart. To do so, we utilize the function `gvisMotionChart()`. To get an idea of how this function works, take a look at the example below.
 
 ```{r "2_1_International_evidence_-_Top_income_shares__22",results='asis'}
@@ -616,7 +616,7 @@ Implement this regression on our data set `Int.data` using the `lm()` command, j
 Int.reg1 = lm(log(top1) ~ log(1 - mtr) + country, data = Int.data)
 ```
 
-In the motion chart we were able to observe that the strength of the correlation between top net-of-tax rates and top income shares increased over time. That's why we want to do the exact same regression we just did for the two time spans until 1980 and from 1981. To do that, use the `filter()`-command to pass `lm` the correct data and save the regression for the first period as `Int.reg2` and for the second period as `Int.reg3`.
+In the motion chart we were able to observe that the strength of the correlation between top net-of-tax rates and top income shares increased over time. That's why we want to do the exact same regression we have just done for the two time spans until 1980 and from 1981. To do that, use the `filter()`-command to pass `lm` the correct data and save the regression for the first period as `Int.reg2` and for the second period as `Int.reg3`.
 
 ```{r "2_1_International_evidence_-_Top_income_shares__25"}
 Int.reg2 = lm(log(top1) ~ log(1 - mtr) + country,
@@ -709,7 +709,7 @@ p1 = p1 + theme_economist()
 p1
 ```
 
-If we look at the plot, there is no significant correlation visible between cuts in top tax rates and economic growth. (This also holds true for the sub periods, as Piketty et al. show in the Appendix of their paper.) If a substantial part of the high responsiveness of top incomes to top tax rates would be due to supply-side responses, decreases in top tax rates should also lead to higher GDP growth. However, this is not the case in our data. This indicates a high compensation-bargaining elasticity $e_3$ and a low supply-side elasticity $e_1$. This is especially true if we assume that the influence of tax avoidance responses and therefore $e_2$ is small, as we have found in our US evidence.
+If we look at the plot, there is no significant correlation visible between cuts in top tax rates and economic growth. (This also holds true for the sub periods, as Piketty et al. show in the Appendix of their paper.) If a substantial part of the high responsiveness of top incomes to top tax rates would be due to supply-side responses, decreases in top tax rates should also lead to higher GDP growth. However, this is not the case in our data. This indicates a high compensation-bargaining elasticity $e_3$ and a low supply-side elasticity $e_1$. This is especially true if we assume that the influence of tax avoidance responses, and therefore $e_2$, is small as we have found in our US evidence.
 
 ### b) One more regression
 
@@ -749,7 +749,7 @@ Int.data = mutate(group_by(Int.data, country),
 
 The purpose of the variable `gdp_start_year` is to test for the influence initial GDP has on GDP growth. It is negative if initial GDP is below average and vice versa. (Again, the use of the *Data Explorer* can be useful.)
 
-Now we can do the regression that we looked at above. We use the same robust standard errors as we did in *Exercise 2.1*. Besides implementing a couple of arguments of `showreg()` to make the result better looking, this time we are going to use the html-output of `showreg()`. All we have to do is set the argument `output` to "html".
+Now we can do the regression that we looked at above. We use the same robust standard errors as we did in *Exercise 2.1*. Besides implementing a couple of arguments of `showreg()` to make the result optically more appealing, this time we are going to use the html-output of `showreg()`. All we have to do is set the argument `output` to "html".
 
 ```{r "2_2_International_evidence_-_Economic_growth__32",results='asis'}
 # First, we do the regression, also using the new variable we created:
@@ -812,7 +812,7 @@ We denote by $z$ taxable earnings and by $T(z)$ the non-linear tax schedule. Our
 The government maximizes the social welfare function $W=\int G(u_i)~dv(i)$, where $G()$ is increasing concave, $u_i$ is the utility of individual $i$ and $dv(i)$ is the density mass of people of individuals of type $i$. We assume that the average social marginal welfare weight for top bracket income earners is zero. This means that the government sets top MTR $r$ to maximize tax revenues among top incomes.
 
 ### Info: Welfare weight zero
-The social marginal welfare weight on individual $i$ is defined as $g_i = G'(u_i)u_{ci} / p$. For top bracket income earners, we assume that this is on average zero. This allows us to obtain an upper bound on the optimal top tax rate. But, as we will discuss later, we can also integrate a positive social welfare weight $g$ on marginal consumption of top bracket earners.
+The social marginal welfare weight on individual $i$ is defined as $g_i = G'(u_i)u_{ci} / p$. For top bracket income earners, we assume that this is on average zero. This allows us to obtain an upper bound on the optimal top tax rate. However, as we will discuss later, we can also integrate a positive social welfare weight $g$ on marginal consumption of top bracket earners.
 
 ### a) Deriving elasticities
 
@@ -939,7 +939,7 @@ These three elasticity components combine to the overall elasticity $e$ in the f
 
 $$e=\dfrac{y}{z}e_1+e_2+e_3=\dfrac{\dfrac{dz}{z}}{\dfrac{d(1-r)}{1-r}}.$$
 
-Again, we can see in the formula what we already have discussed earlier: The overall elasticity $e$ describes by how much taxable income increases if the top net-of-tax rate increases.
+Again, we can see in the formula what we have already discussed earlier: The overall elasticity $e$ describes by how much taxable income increases if the top net-of-tax rate increases.
 
 ### Info: Derivation 3
 Proof, that $e=\dfrac{y}{z}e_1+e_2+e_3$:
@@ -1237,7 +1237,7 @@ top_tax_avoidance
 
 We can observe that, now, we obtain a revenue-maximizing top tax rate of $r^*=62\%$ which is higher than in the standard supply-side scenario. This is due to the fiscal externality that is created by the fact that some of the income that is shifted away from ordinary income can still be taxed as sheltered income with the tax rate $t$.
 
-Note: In their paper, Piketty et al. show that, if the government is able to broaden the base and increase tax enforcement to reduce tax-avoidance elasticity $e_2$ to $0.1$ (while keeping $e_1=0.2$ constant), in our model we obtain an optimal top tax rate $r^*$ of $71\%$. This makes clear that, in the tax-avoidance scenario, the government first has to close loopholes before being able to further increase top tax rates.
+Note: In their paper, Piketty et al. show that if the government is able to broaden the base and increase tax enforcement to reduce tax-avoidance elasticity $e_2$ to $0.1$ (while keeping $e_1=0.2$ constant), in our model we obtain an optimal top tax rate $r^*$ of $71\%$. This makes it clear that, in the tax-avoidance scenario, the government first has to close loopholes before being able to further increase top tax rates.
 
 ### d) Compensation-Bargaining Scenario
 
@@ -1254,7 +1254,7 @@ top_tax_bargaining = top.tax(0.5, 0, 0.3, 0.2, 1.5)
 top_tax_bargaining
 ```
 
-You can observe that, in our model, this scenario leads to the by far highest optimal top tax rate $r^*$. This is due to the fact that we assumed that compensation bargaining is completely harmful and hence is tried to be avoided by the government.
+In our model, you can observe that this scenario leads to the by far highest optimal top tax rate $r^*$. This is due to the fact that we assumed that compensation bargaining is harmful and hence is tried to be avoided by the government.
 
 In this exercise we could see what top tax rates the different scenarios and their respective composition of top income elasticity $e$ lead to in the model of Piketty et al. In the next and also last exercise we are going to further discuss these findings.
 
@@ -1392,7 +1392,7 @@ Income Tax". Publication 17, Catalog Number 10311G.
 
 **R and R packages**
   
-* Arnold, Jeffrey B. (2014). ggthemes: Extra themes, scales and geoms for ggplot. R package version 1.7.0. http://CRAN.R-project.org/package=ggthemes
+* Arnold, Jeffrey B. (2014). ggthemes: Extra themes, scales and geoms for ggplot. R package version 2.1.0. http://CRAN.R-project.org/package=ggthemes
 
 * Auguie, Baptiste. (2012). gridExtra: functions in Grid graphics. R package version 0.9.1. http://CRAN.R-project.org/package=gridExtra
 
@@ -1400,7 +1400,7 @@ Income Tax". Publication 17, Catalog Number 10311G.
 
 * Kranz, Sebastian. (2014). regtools: Tools for presenting regressions results. R package version 0.1.
 
-* Kranz, Sebastian. (2014). RTutor: Creating R exercises with automatic assessment of student's solutions. R package version 0.5.5.
+* Kranz, Sebastian. (2014). RTutor: Creating R exercises with automatic assessment of student's solutions. R package version 0.7.1.
 
 * R Core Team. (2014). foreign: Read Data Stored by Minitab, S, SAS, SPSS, Stata, Systat, Weka, dBase, .... R package version 0.8-61. http://CRAN.R-project.org/package=foreign
 
