@@ -9,6 +9,8 @@ library(RTutor)
 
 #setwd("C:/Users/Jonas/Desktop/Bachelorarbeit/Problem Set") #adapt path
 setwd("D:/libraries/RTutor/examples")
+setwd("D:/libraries/RTutorTopIncomeTaxation/RTutorTopIncomeTaxation/inst/ps")
+
 ps.name = "Optimal Taxation of Top Labor Incomes"
 sol.file = paste0(ps.name, "_sol.Rmd")
 libs = c("ggplot2", "gridExtra", "dplyr", "regtools", "sandwich", "foreign", "googleVis", "ggthemes")
@@ -23,6 +25,10 @@ show.shiny.ps(ps.name, load.sav = FALSE, launch.browser = TRUE, sample.solution 
 
 In their paper **"Optimal Taxation of Top Labor Incomes: A Tale of Three Elasticities"** Thomas Piketty, Emmanuel Saez and Stefanie Stantcheva (2014) analyse the response of top earners to taxes and derive optimal tax rate formulas from their findings. In this interactive *R* Tutorial, we are going to gradually reproduce their study and discuss it.  
 (The article and the corresponding public data is provided on the website of the *American Economic Association*. You can click on this [link](https://www.aeaweb.org/articles.php?doi=10.1257/pol.6.1.230) to download it.)
+
+To install an offline version of this problem set, follow the instructions here:
+
+https://github.com/skranz/RTutorTopIncomeTaxation
 
 ## Exercise Overview
 
